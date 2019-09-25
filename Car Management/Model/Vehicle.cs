@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using static Car_Management.Enum.DStatus;
 
 namespace Car_Management.Model
 {
@@ -22,14 +23,39 @@ namespace Car_Management.Model
 
         public bool IsVerified { get; set; }
         public bool IsActive { get; set; }
+        
+        [Required]
+        public DateTime VehicleLicenseIssuedDate { get; set; }
 
-        public VehicleLicense VehicleLicense { get; set; }
+        [Required]
+        public DateTime VehicleLicenseExpirationDate { get; set; }
 
-        public Issurance Issurance { get; set; }
+        [Required]
+        public DateTime IssuranceIssuedDate { get; set; }
 
-        public HackneyPermit Hackneypermit { get; set; }
+        [Required]
+        public DateTime IssuranceExpirationDate { get; set; }
 
-        public RoadWorthiness RoadWorthiness { get; set; }
+        [Required]
+        public DateTime RoadWorthinessIssuedDate { get; set; }
+
+        [Required]
+        public DateTime RoadWorthinessExpirationDate { get; set; }
+
+        [Required]
+        public DateTime HackneyPermitIssuedDate { get; set; }
+
+        [Required]
+        public DateTime HackneyExpirationDate { get; set; }
+
+        public DocumentStatus Status{ get; set; }
+
+        public Vehicle()
+        {
+            Status = DocumentStatus.Active;
+        }
+
+
 
     }
 }

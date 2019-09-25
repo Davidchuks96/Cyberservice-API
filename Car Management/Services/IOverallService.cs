@@ -11,6 +11,6 @@ namespace Car_Management.Services
         void Create(OverallService overallservice);
         IEnumerable<OverallService> GetAllOverallService();
         void Delete(OverallService newService);
-        OverallService GetOverllServiceByid(int id);
+        OverallService GetOverallServiceByid(int id);
     }
 }

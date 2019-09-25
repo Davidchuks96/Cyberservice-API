@@ -16,7 +16,7 @@ namespace Car_Management.Repository
             _context = context;
         }
 
-        public void  Create(Service newService)
+        public void Create(Service newService)
         {
             _context.Set<Service>().AddAsync(newService);
             _context.SaveChangesAsync();

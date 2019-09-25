@@ -17,15 +17,15 @@ namespace Car_Management.Repository
             _context = context;
         }
 
-        public async Task Create(OverallService newOverallService)
+        public void Create(OverallService newOverallService)
         {
-            await _context.Set<OverallService>().AddAsync(newOverallService);
-            await _context.SaveChangesAsync();
+             _context.Set<OverallService>().AddAsync(newOverallService);
+             _context.SaveChangesAsync();
         }
 
         public IEnumerable<OverallService> GetAllOverallService()
         {
-            return _context.OverallServices.ToList();
+            return _context.Overall.ToList();
         }
 
         public void Delete(OverallService newService)
@@ -35,9 +35,9 @@ namespace Car_Management.Repository
                 _context.SaveChanges();
             }
         }
-        public OverallService GetOverllServiceByid(int id)
+        public OverallService GetOverallServiceByid(int id)
         {
-            return _context.OverallServices.FirstOrDefault(A => A.Overallservice.Id == id);
+            return _context.Overall.FirstOrDefault(service => service.OverallId == id);
         }
 
     }
