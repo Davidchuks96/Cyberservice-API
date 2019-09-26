@@ -16,9 +16,6 @@ namespace Car_Management.Model
 
         public DateTime Time { get; set; }
 
-        [ForeignKey("Service")]
-        public int ServiceId { get; set; }
-
         public Service service { get; set; }
     }
 }

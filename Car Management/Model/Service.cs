@@ -22,6 +22,7 @@ namespace Car_Management.Model
         [Required]
         public DateTime NextDateOfService { get; set; }
 
-
+        [ForeignKey("Overall")]
+        public int OverallId { get; set; }
     }
 }

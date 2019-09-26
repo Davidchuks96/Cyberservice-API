@@ -16,8 +16,7 @@ namespace Car_Management.Controllers
     [ApiController]
     public class OverallServiceController : ControllerBase
     {
-
-        private IOverallService _overallservice;
+        private readonly IOverallService _overallservice;
         private ApplicationDbContext _context;
 
         public OverallServiceController(IOverallService overallservice,

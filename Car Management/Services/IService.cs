@@ -7,9 +7,9 @@ namespace Car_Management.Repository
 {
     public interface IService
     {
-        Service GetBy(int? id);
+        Service GetServiceByid(int? id);
         void Create(Service newService);
-        void Delete(int? id,Service newService);
+        void Delete(Service newService);
         IEnumerable<Service> GetAll();
         IEnumerable<Service> GetByName(string name);
         IEnumerable<Service> GetByDescription(string description);

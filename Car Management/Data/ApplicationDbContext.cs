@@ -19,13 +19,6 @@ namespace Car_Management.Data
         public DbSet<Service> Services { get; set; }
         public DbSet<Vehicle> Vehicles { get; set; }
         public DbSet<OverallService> Overall { get; set; }
-       // protected override void OnModelCreating(ModelBuilder builder)
-        //{
-          // base.OnModelCreating(builder);
-           //builder.Entity<Issurance>();
-          // builder.Entity<VehicleLicense>();
-          // builder.Entity<HackneyPermit>();
-          // builder.Entity<RoadWorthiness>();
-       // }
+
     }
 }

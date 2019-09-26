@@ -22,15 +22,14 @@ namespace Car_Management.Repository
             _context.SaveChangesAsync();
         }
 
-        public void Delete(int? id, Service newService)
+        public void Delete(Service newService)
         {
             {
-                var entity = _context.Set<Service>().Find(id);
-                _context.Set<Service>().Remove(entity);
+                _context.Set<Service>().Remove(newService);
                 _context.SaveChanges();
             }
         }
-        public Service GetBy(int? id)
+        public Service GetServiceByid(int? id)
         {
             return _context.Services.FirstOrDefault(service => service.ServiceId == id);
         }
@@ -54,9 +53,6 @@ namespace Car_Management.Repository
         {
             return _context.Services.Where(a => a.SerialNo == serialno);
         }
-
-        //public Service GetByDate(DateTime Datetime);
-
 
         public void Update(int? id, Service newService)
         {
