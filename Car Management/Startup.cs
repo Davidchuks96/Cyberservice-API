@@ -34,7 +34,9 @@ namespace Car_Management
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DataEntities")));
+            services.AddDbContext<ApplicationDbContext>(options => 
+            options.UseSqlServer(Configuration.GetConnectionString("DataEntities")));
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddAuthorization(cfg => cfg.AddPolicy("SuperUser", p => p.RequireClaim("SuperUser", "true")));
             services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
@@ -50,8 +52,7 @@ namespace Car_Management
                 options.Password.RequireLowercase = true;
                 options.Password.RequireUppercase = true;
                 //options.Password.RequiredLength =11;
-            }
-           );
+            });
 
             //Jwt Authentication
 

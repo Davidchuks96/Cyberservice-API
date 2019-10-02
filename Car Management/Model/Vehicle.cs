@@ -11,7 +11,7 @@ namespace Car_Management.Model
     public class Vehicle
     {
         [Key]
-        public int VehicleId { get; set; }
+        public int Id { get; set; }
         [Required]
         public VehicleType VehicleType{ get; set; }
         [Required]
@@ -46,7 +46,7 @@ namespace Car_Management.Model
         public DateTime HackneyPermitIssuedDate { get; set; }
 
         [Required]
-        public DateTime HackneyExpirationDate { get; set; }
+        public DateTime HackneyPermitExpirationDate { get; set; }
 
         public DocumentStatus Status{ get; set; }
 

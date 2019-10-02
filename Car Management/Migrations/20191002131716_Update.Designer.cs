@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Car_Management.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190925110748_Update")]
+    [Migration("20191002131716_Update")]
     partial class Update
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -76,26 +76,22 @@ namespace Car_Management.Migrations
 
             modelBuilder.Entity("Car_Management.Model.OverallService", b =>
                 {
-                    b.Property<int>("OverallId")
+                    b.Property<int>("OverallServiceId")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Name");
 
-                    b.Property<int>("ServiceId");
-
                     b.Property<DateTime>("Time");
 
-                    b.HasKey("OverallId");
-
-                    b.HasIndex("ServiceId");
+                    b.HasKey("OverallServiceId");
 
                     b.ToTable("Overall");
                 });
 
             modelBuilder.Entity("Car_Management.Model.Service", b =>
                 {
-                    b.Property<int>("ServiceId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -107,23 +103,27 @@ namespace Car_Management.Migrations
 
                     b.Property<DateTime>("NextDateOfService");
 
+                    b.Property<int>("OverallServiceId");
+
                     b.Property<DateTime>("RecentDateOfService");
 
                     b.Property<string>("SerialNo")
                         .IsRequired();
 
-                    b.HasKey("ServiceId");
+                    b.HasKey("Id");
+
+                    b.HasIndex("OverallServiceId");
 
                     b.ToTable("Services");
                 });
 
             modelBuilder.Entity("Car_Management.Model.Vehicle", b =>
                 {
-                    b.Property<int>("VehicleId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("HackneyExpirationDate");
+                    b.Property<DateTime>("HackneyPermitExpirationDate");
 
                     b.Property<DateTime>("HackneyPermitIssuedDate");
 
@@ -156,7 +156,7 @@ namespace Car_Management.Migrations
 
                     b.Property<int>("VehicleType");
 
-                    b.HasKey("VehicleId");
+                    b.HasKey("Id");
 
                     b.ToTable("Vehicles");
                 });
@@ -271,11 +271,11 @@ namespace Car_Management.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("Car_Management.Model.OverallService", b =>
+            modelBuilder.Entity("Car_Management.Model.Service", b =>
                 {
-                    b.HasOne("Car_Management.Model.Service", "service")
-                        .WithMany()
-                        .HasForeignKey("ServiceId")
+                    b.HasOne("Car_Management.Model.OverallService")
+                        .WithMany("services")
+                        .HasForeignKey("OverallServiceId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

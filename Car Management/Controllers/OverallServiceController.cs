@@ -28,13 +28,14 @@ namespace Car_Management.Controllers
 
         [HttpPost]
         [Route("Addservice")]
+        [Route("AddOverallservice")]
         public IActionResult post([FromBody] OverallService overallservice)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
-            }
-                ;
+            };
+
             OverallService overall = new OverallService
             {
                 Name = overallservice.Name,

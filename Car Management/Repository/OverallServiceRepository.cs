@@ -20,7 +20,7 @@ namespace Car_Management.Repository
         public void Create(OverallService newOverallService)
         {
              _context.Set<OverallService>().AddAsync(newOverallService);
-             _context.SaveChangesAsync();
+             _context.SaveChanges();
         }
 
         public IEnumerable<OverallService> GetAllOverallService()
@@ -37,7 +37,7 @@ namespace Car_Management.Repository
         }
         public OverallService GetOverallServiceByid(int id)
         {
-            return _context.Overall.FirstOrDefault(service => service.OverallId == id);
+            return _context.Set<OverallService>().FirstOrDefault(x => x.OverallServiceId == id);
         }
 
     }
