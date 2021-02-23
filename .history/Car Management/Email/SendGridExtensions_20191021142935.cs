@@ -12,7 +12,7 @@ namespace Cyberservice_management.Email
     {
         public static IServiceCollection AddSendGridEmailSender(this IServiceCollection services)
         {
-            //services.AddTransient<IEmailSender, SendGridEmailSender>();
+            services.AddTransient<IEmailSender, SendGridEmailSender>();
 
             return services;
         }

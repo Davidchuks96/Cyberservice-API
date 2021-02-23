@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace Cyberservice_management.Services
 {
    //public class SendGridEmailSender:IEmailSender
- // {
+  {
        // private readonly AppSettings _appSettings;
 
        // public SendGridEmailSender(IOptions<AppSettings> appSettings)
@@ -35,4 +35,4 @@ namespace Cyberservice_management.Services
             //return new SendEmailResponse();
        // }
    }
-//}
+}
