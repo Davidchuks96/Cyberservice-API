@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Car_Management.Model
+namespace Cyberservice_management.Model
 {
     public class OverallService
     {

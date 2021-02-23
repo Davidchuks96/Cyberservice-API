@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Car_Management.Controllers
+namespace Cyberservice_management.Controllers
 {
    
     [Route("api/[controller]")]

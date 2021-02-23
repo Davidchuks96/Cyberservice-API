@@ -1,14 +1,15 @@
-﻿using Car_Management.Data;
-using Car_Management.Model;
-using Car_Management.Repository;
-using Car_Management.Services;
+﻿using Cyberservice_management.Data;
+using Cyberservice_management.Model;
+using Cyberservice_management.Repository;
+using Cyberservice_management.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Car_Management.Controllers
+namespace Cyberservice_management.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -28,7 +29,9 @@ namespace Car_Management.Controllers
             repository = _service;
         }
 
+        [HttpPost]
         [Route("AddService")]
+       //[Authorize(Policy = "RequireAdministratorRole")]
         public IActionResult Post([FromBody]Service service)
         {
             if (!ModelState.IsValid)
@@ -37,11 +40,12 @@ namespace Car_Management.Controllers
             }
             //confirm the overall serviceid is correct
             repository.Add(service);
-            return Ok();
+            return Ok(new JsonResult("The Service was Added Successfully"));
         }
 
         [HttpGet("{id}")]
         [Route("Get/{id}")]
+        //[Authorize(Policy = "RequireLoggedIn")]
         public IActionResult Get(int id)
         {
             if (id == null)
@@ -52,15 +56,9 @@ namespace Car_Management.Controllers
             return Ok(service);
         }
 
-        [HttpGet("{id}")]
-        public IActionResult Edit(int id)
-        {
-            Service service = repository.GetServiceById(id);
-            return Ok(service);
-        }
-
-        [HttpPost]
+        [HttpPut]
         [Route("Edit")]
+        [Authorize(Policy = "RequireAdministratorRole")]
         public IActionResult Edit([FromBody] Service service)
         {
             if (ModelState.IsValid)
@@ -74,15 +72,20 @@ namespace Car_Management.Controllers
             {
                 return BadRequest();
             }
-            return Ok();
+            return Ok(new JsonResult("Updated Successfully"));
         }
 
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete("Delete/{id}")]
+        //[Authorize(Policy = "RequireAdministratorRole")]
+        public IActionResult DeleteService([FromRoute] int id)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
             Service service = repository.GetServiceById(id);
             repository.Delete(service);
-
+            return Ok(new JsonResult ("The Service was Deleted Successfully"));
         }
     }
 }

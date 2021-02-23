@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Car_Management.Migrations
+namespace Cyberservice_management.Migrations
 {
     public partial class Initial : Migration
     {
@@ -40,8 +40,7 @@ namespace Car_Management.Migrations
                     TwoFactorEnabled = table.Column<bool>(nullable: false),
                     LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
                     LockoutEnabled = table.Column<bool>(nullable: false),
-                    AccessFailedCount = table.Column<int>(nullable: false),
-                    FullName = table.Column<string>(nullable: true)
+                    AccessFailedCount = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -49,20 +48,17 @@ namespace Car_Management.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Services",
+                name: "Overall",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    OverallServiceId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(nullable: false),
-                    Description = table.Column<string>(nullable: false),
-                    SerialNo = table.Column<string>(nullable: false),
-                    RecentDateOfService = table.Column<DateTime>(nullable: false),
-                    NextDateOfService = table.Column<DateTime>(nullable: false)
+                    Name = table.Column<string>(nullable: true),
+                    Time = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Services", x => x.Id);
+                    table.PrimaryKey("PK_Overall", x => x.OverallServiceId);
                 });
 
             migrationBuilder.CreateTable(
@@ -77,15 +73,15 @@ namespace Car_Management.Migrations
                     Officers = table.Column<string>(nullable: false),
                     IsVerified = table.Column<bool>(nullable: false),
                     IsActive = table.Column<bool>(nullable: false),
-                    Discriminator = table.Column<string>(nullable: false),
-                    IssuedDate = table.Column<DateTime>(nullable: true),
-                    ExpirationDate = table.Column<DateTime>(nullable: true),
-                    Issurance_IssuedDate = table.Column<DateTime>(nullable: true),
-                    Issurance_ExpirationDate = table.Column<DateTime>(nullable: true),
-                    RoadWorthiness_IssuedDate = table.Column<DateTime>(nullable: true),
-                    RoadWorthiness_ExpirationDate = table.Column<DateTime>(nullable: true),
-                    VehicleLicense_IssuedDate = table.Column<DateTime>(nullable: true),
-                    VehicleLicense_ExpirationDate = table.Column<DateTime>(nullable: true)
+                    VehicleLicenseIssuedDate = table.Column<DateTime>(nullable: false),
+                    VehicleLicenseExpirationDate = table.Column<DateTime>(nullable: false),
+                    IssuranceIssuedDate = table.Column<DateTime>(nullable: false),
+                    IssuranceExpirationDate = table.Column<DateTime>(nullable: false),
+                    RoadWorthinessIssuedDate = table.Column<DateTime>(nullable: false),
+                    RoadWorthinessExpirationDate = table.Column<DateTime>(nullable: false),
+                    HackneyPermitIssuedDate = table.Column<DateTime>(nullable: false),
+                    HackneyPermitExpirationDate = table.Column<DateTime>(nullable: false),
+                    Status = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -198,6 +194,39 @@ namespace Car_Management.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Services",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Name = table.Column<string>(nullable: false),
+                    Description = table.Column<string>(nullable: false),
+                    RecentDateOfService = table.Column<DateTime>(nullable: false),
+                    NextDateOfService = table.Column<DateTime>(nullable: false),
+                    OverallServiceId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Services", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Services_Overall_OverallServiceId",
+                        column: x => x.OverallServiceId,
+                        principalTable: "Overall",
+                        principalColumn: "OverallServiceId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[] { "1", null, "Admin", "ADMIN" });
+
+            migrationBuilder.InsertData(
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[] { "2", null, "User", "USER" });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -236,6 +265,11 @@ namespace Car_Management.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Services_OverallServiceId",
+                table: "Services",
+                column: "OverallServiceId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -266,6 +300,9 @@ namespace Car_Management.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Overall");
         }
     }
 }

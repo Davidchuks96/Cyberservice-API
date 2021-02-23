@@ -1,16 +1,16 @@
-﻿using Car_Management.Model;
+﻿using Cyberservice_management.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Car_Management.Enum
+namespace Cyberservice_management.Enum
 {
     public enum VehicleType 
     {
-        Car,
-        Bus,
-        MotorCycle
+        Car = 1,
+        Bus = 2,
+        MotorCycle = 3
        
     }
 }

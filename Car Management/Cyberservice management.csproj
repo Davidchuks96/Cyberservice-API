@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
-    <RootNamespace>Car_Management</RootNamespace>
+    <RootNamespace>Cyberservice_management</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

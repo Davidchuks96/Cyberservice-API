@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Car_Management.Model
+namespace Cyberservice_management.Model
 {
     public class Service
     {
@@ -15,8 +15,8 @@ namespace Car_Management.Model
         public string Name { get; set; }
         [Required]
         public string Description { get; set; }
-        [Required]
-        public string SerialNo { get; set; }
+        //[Required]
+       // public string SerialNo { get; set; }
         [Required]
         public DateTime RecentDateOfService { get; set; }
         [Required]

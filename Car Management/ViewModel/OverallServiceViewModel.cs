@@ -1,11 +1,11 @@
-﻿using Car_Management.Model;
+﻿using Cyberservice_management.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Car_Management.ViewModel
+namespace Cyberservice_management.ViewModel
 {
     public class OverallServiceViewModel
     {

@@ -1,11 +1,11 @@
-﻿using Car_Management.Enum;
-using Car_Management.Model;
+﻿using Cyberservice_management.Enum;
+using Cyberservice_management.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Car_Management.Repository
+namespace Cyberservice_management.Repository
 {
     public interface IVehicle
     {

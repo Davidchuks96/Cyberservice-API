@@ -1,12 +1,12 @@
-﻿using Car_Management.Data;
-using Car_Management.Model;
-using Car_Management.Services;
+﻿using Cyberservice_management.Data;
+using Cyberservice_management.Model;
+using Cyberservice_management.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Car_Management.Repository
+namespace Cyberservice_management.Repository
 {
     public class OverallServiceRepository:IOverallService
     {

@@ -1,12 +1,12 @@
-﻿using Car_Management.Data;
-using Car_Management.Model;
-using Car_Management.ViewModel;
+﻿using Cyberservice_management.Data;
+using Cyberservice_management.Model;
+using Cyberservice_management.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Car_Management.Repository
+namespace Cyberservice_management.Repository
 {
     public class ServiceRepository:IService
     {
@@ -49,10 +49,10 @@ namespace Car_Management.Repository
             return _context.Services.Where(a => a.Description == description);
         }
 
-        public IEnumerable<Service> GetBySerialNo(string serialno)
-        {
-            return _context.Services.Where(a => a.SerialNo == serialno);
-        }
+        //public IEnumerable<Service> GetBySerialNo(string serialno)
+        //{
+            //return _context.Services.Where(a => a.SerialNo == serialno);
+       // }
 
         public OverallService GetOverallServiceById(int OverallServiceId)
         {
@@ -64,6 +64,7 @@ namespace Car_Management.Repository
             _context.Set<Service>().Update(newService);
             _context.SaveChanges();
         }
+
         public void Add(Service service)
         {
             _context.Set<Service>().AddAsync(service);
